@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Education')}"></head>
+<body class="app-shell">
+    <div th:replace="~{fragments/ui :: workspace-nav('seeker', 'profile', 'Education')}"></div>
+    <main class="app-main">
+        <div class="app-content">
+    <div class="form-page narrow"><p><a class="text-link" th:href="@{/seeker/profile}">â† Back to profile</a></p>
+        <div class="page-heading"><div><span class="eyebrow">Your foundation</span><h1 th:text="${educationId == null ? 'Add education' : 'Edit education'}">Education</h1><p>Add the learning context behind your experience.</p></div></div>
+        <form class="panel form-stack" th:action="${educationId == null} ? @{/seeker/education} : @{/seeker/education/{id}(id=${educationId})}" th:object="${educationForm}" method="post">
+            <input th:replace="~{fragments/ui :: csrf}">
+            <div class="error-summary" th:if="${#fields.hasGlobalErrors()}"><p th:each="error : ${#fields.globalErrors()}" th:text="${error}">Please review the form.</p></div>
+            <div class="form-grid">
+                <div class="field"><label for="degree">Degree or qualification</label><input id="degree" th:field="*{degree}"><small class="field-error" th:errors="*{degree}"></small></div>
+                <div class="field"><label for="institution">Institution</label><input id="institution" th:field="*{institution}"><small class="field-error" th:errors="*{institution}"></small></div>
+                <div class="field field--wide"><label for="field-of-study">Field of study</label><input id="field-of-study" th:field="*{fieldOfStudy}"><small class="field-error" th:errors="*{fieldOfStudy}"></small></div>
+                <div class="field"><label for="start-year">Start year</label><input id="start-year" th:field="*{startYear}" type="number"><small class="field-error" th:errors="*{startYear}"></small></div>
+                <div class="field"><label for="end-year">End year</label><input id="end-year" th:field="*{endYear}" type="number"><small class="field-error" th:errors="*{endYear}"></small></div>
+            </div>
+            <div class="form-actions form-actions--end"><a class="button button--secondary" th:href="@{/seeker/profile}">Cancel</a><button class="button button--primary" type="submit">Save education</button></div>
+        </form>
+    </div>
+</div></main>
+</body>
+</html>

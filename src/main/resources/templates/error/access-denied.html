@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Access denied')}"></head>
+<body><div th:replace="~{fragments/ui :: public-nav}"></div><main class="section"><div class="container narrow"><div class="empty-state"><div class="empty-icon">!</div><span class="eyebrow">403 · Access boundary</span><h1>This space is not yours to enter.</h1><p>You do not have permission to access this area. Return to a workspace that matches your account.</p><div class="page-heading-actions"><a class="button button--primary" th:href="@{/}">Return to HIRVO</a><a class="button button--secondary" th:href="@{/jobs}">Browse jobs</a></div></div></div></main></body>
+</html>

@@ -1,0 +1,7 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="job" x1="0" y1="0" x2="1200" y2="360" gradientUnits="userSpaceOnUse"><stop stop-color="#101828"/><stop offset=".55" stop-color="#5146D8"/><stop offset="1" stop-color="#36BFB0"/></linearGradient></defs>
+  <rect width="1200" height="360" fill="url(#job)"/>
+  <circle cx="940" cy="40" r="220" fill="#fff" fill-opacity=".1"/><circle cx="1060" cy="320" r="170" fill="#fff" fill-opacity=".08"/>
+  <path d="M0 282C180 182 310 332 505 246c192-85 316-166 695-42v156H0V282Z" fill="#fff" fill-opacity=".07"/>
+  <path d="M84 104h238M84 132h166" stroke="#fff" stroke-opacity=".65" stroke-width="10" stroke-linecap="round"/>
+</svg>

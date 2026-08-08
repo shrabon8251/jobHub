@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Experience')}"></head>
+<body class="app-shell">
+    <div th:replace="~{fragments/ui :: workspace-nav('seeker', 'profile', 'Experience')}"></div>
+    <main class="app-main">
+        <div class="app-content">
+    <div class="form-page narrow"><p><a class="text-link" th:href="@{/seeker/profile}">Back to profile</a></p>
+        <div class="page-heading"><div><span class="eyebrow">Your perspective</span><h1 th:text="${experienceId == null ? 'Add experience' : 'Edit experience'}">Experience</h1><p>Describe the work that shaped how you solve problems.</p></div></div>
+        <form class="panel form-stack" th:action="${experienceId == null} ? @{/seeker/experience} : @{/seeker/experience/{id}(id=${experienceId})}" th:object="${experienceForm}" method="post">
+            <input th:replace="~{fragments/ui :: csrf}">
+            <div class="error-summary" th:if="${#fields.hasGlobalErrors()}"><p th:each="error : ${#fields.globalErrors()}" th:text="${error}">Please review the form.</p></div>
+            <div class="form-grid">
+                <div class="field"><label for="company">Company</label><input id="company" th:field="*{company}"><small class="field-error" th:errors="*{company}"></small></div>
+                <div class="field"><label for="position">Position</label><input id="position" th:field="*{position}"><small class="field-error" th:errors="*{position}"></small></div>
+                <div class="field field--wide"><label for="experience-description">Description</label><textarea id="experience-description" th:field="*{description}" maxlength="4000" data-character-count="true" placeholder="Share the impact, not just the responsibilities."></textarea><small class="field-error" th:errors="*{description}"></small><small class="form-help character-counter" data-character-counter aria-live="polite"></small></div>
+                <div class="field"><label for="start-date">Start date</label><input id="start-date" th:field="*{startDate}" type="date"><small class="field-error" th:errors="*{startDate}"></small></div>
+                <div class="field"><label for="end-date">End date <span class="muted">(optional)</span></label><input id="end-date" th:field="*{endDate}" type="date"><small class="field-error" th:errors="*{endDate}"></small></div>
+            </div>
+            <div class="form-actions form-actions--end"><a class="button button--secondary" th:href="@{/seeker/profile}">Cancel</a><button class="button button--primary" type="submit">Save experience</button></div>
+        </form>
+    </div>
+</div></main>
+</body>
+</html>

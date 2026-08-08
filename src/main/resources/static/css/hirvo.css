@@ -1,0 +1,19 @@
+/* Compatibility entry point. Keep this URL stable while loading the organized stylesheet modules. */
+@import url("variables.css");
+@import url("base.css");
+@import url("navbar.css");
+@import url("buttons.css");
+@import url("alerts.css");
+@import url("layout.css");
+@import url("cards.css");
+@import url("forms.css");
+@import url("sidebar.css");
+@import url("dashboard.css");
+@import url("jobs.css");
+@import url("tables.css");
+@import url("profile.css");
+@import url("admin.css");
+@import url("modal.css");
+@import url("responsive.css");
+@import url("polish.css");
+@import url("responsive-polish.css");

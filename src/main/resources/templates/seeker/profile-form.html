@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Edit your profile')}"></head>
+<body class="app-shell">
+    <div th:replace="~{fragments/ui :: workspace-nav('seeker', 'profile', 'Edit profile')}"></div>
+    <main class="app-main">
+        <div class="app-content">
+    <div class="form-page narrow"><p><a class="text-link" th:href="@{/seeker/profile}">Back to profile</a></p>
+        <div class="page-heading"><div><span class="eyebrow">Make it personal</span><h1>Edit profile</h1><p>A clear profile helps the right opportunity understand you sooner.</p></div></div>
+        <div class="profile-completeness" aria-live="polite"><div class="profile-completeness-head"><strong data-completeness-value>0% complete</strong><span>Small details help the right team find you.</span></div><div class="profile-completeness-track" role="progressbar" aria-label="Profile completeness" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="profile-completeness-bar" data-completeness-bar></span></div></div>
+        <form class="panel form-stack" data-profile-completeness-form th:action="@{/seeker/profile/edit}" th:object="${profileForm}" method="post" enctype="multipart/form-data">
+            <input th:replace="~{fragments/ui :: csrf}">
+            <div class="error-summary" th:if="${#fields.hasGlobalErrors()}"><p th:each="error : ${#fields.globalErrors()}" th:text="${error}">Please review the form.</p></div>
+            <div class="form-section-title"><h2>Identity</h2><p class="muted">Put a face and a clear introduction to your next move.</p></div>
+            <div class="media-upload-row"><div class="profile-avatar"><img th:src="@{/images/avatars/demo-avatar.svg}" alt="Current profile photo"></div><div class="field file-drop"><label for="profile-image">Profile photo</label><input id="profile-image" th:field="*{profileImage}" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><small>JPG, PNG, WEBP, or GIF Â· max 5 MB</small><small class="field-error" th:errors="*{profileImage}"></small></div></div>
+            <div class="field"><label for="full-name">Full name</label><input id="full-name" th:field="*{fullName}" autocomplete="name"><small class="field-error" th:errors="*{fullName}"></small></div>
+            <div class="field"><label for="bio">Professional introduction</label><textarea id="bio" th:field="*{bio}" maxlength="4000" data-character-count="true" placeholder="What do you care about, and what are you good at?"></textarea><small class="field-error" th:errors="*{bio}"></small><small class="form-help character-counter" data-character-counter aria-live="polite"></small></div>
+            <div class="form-section-title"><h2>Contact &amp; links</h2><p class="muted">Optional details recruiters can use to learn more.</p></div>
+            <div class="form-grid"><div class="field"><label for="phone">Phone</label><input id="phone" th:field="*{phone}" type="tel" autocomplete="tel"><small class="field-error" th:errors="*{phone}"></small></div><div class="field"><label for="whatsapp">WhatsApp</label><input id="whatsapp" th:field="*{whatsappNumber}" type="tel"><small class="field-error" th:errors="*{whatsappNumber}"></small></div><div class="field"><label for="linkedin">LinkedIn</label><input id="linkedin" th:field="*{linkedinUrl}" type="url" placeholder="https://"><small class="field-error" th:errors="*{linkedinUrl}"></small></div><div class="field"><label for="github">GitHub</label><input id="github" th:field="*{githubUrl}" type="url" placeholder="https://"><small class="field-error" th:errors="*{githubUrl}"></small></div><div class="field"><label for="portfolio">Portfolio</label><input id="portfolio" th:field="*{portfolioUrl}" type="url" placeholder="https://"><small class="field-error" th:errors="*{portfolioUrl}"></small></div></div>
+            <div class="form-section-title"><h2>Location</h2></div><div class="form-grid"><div class="field field--wide"><label for="street">Street</label><input id="street" th:field="*{street}"><small class="field-error" th:errors="*{street}"></small></div><div class="field"><label for="city">City</label><input id="city" th:field="*{city}"><small class="field-error" th:errors="*{city}"></small></div><div class="field"><label for="country">Country</label><input id="country" th:field="*{country}"><small class="field-error" th:errors="*{country}"></small></div><div class="field"><label for="postal-code">Postal code</label><input id="postal-code" th:field="*{postalCode}"><small class="field-error" th:errors="*{postalCode}"></small></div></div>
+            <div class="form-actions form-actions--end"><a class="button button--secondary" th:href="@{/seeker/profile}">Cancel</a><button class="button button--primary" type="submit">Save profile</button></div>
+        </form>
+    </div>
+</div></main>
+</body>
+</html>

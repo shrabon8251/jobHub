@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Page not found')}"></head>
+<body><div th:replace="~{fragments/ui :: public-nav}"></div><main class="section"><div class="container narrow"><div class="empty-state"><div class="empty-icon">?</div><span class="eyebrow">404 · Page not found</span><h1>That page moved on.</h1><p th:text="${message != null ? message : 'We could not find what you were looking for.'}">We could not find what you were looking for.</p><div class="page-heading-actions"><a class="button button--primary" th:href="@{/jobs}">Find jobs</a><a class="button button--secondary" th:href="@{/}">Go home</a></div></div></div></main></body>
+</html>

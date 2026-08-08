@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Saved jobs')}"></head>
+<body class="app-shell">
+    <div th:replace="~{fragments/ui :: workspace-nav('seeker', 'saved', 'Saved jobs')}"></div>
+    <main class="app-main">
+        <div class="app-content"><div th:replace="~{fragments/ui :: flash}"></div><div class="page-heading"><div><span class="eyebrow">Your shortlist</span><h1>Saved jobs</h1><p>Keep the possibilities that deserve another look close by.</p></div><a class="button button--primary" th:href="@{/jobs}">Browse jobs</a></div><section class="panel" th:if="${!savedJobs.empty}"><div class="data-list"><div class="data-list-item" th:each="saved : ${savedJobs}"><div class="job-card-top"><div class="company-avatar" th:text="${#strings.substring(saved.job.recruiter.companyName, 0, 1)}">C</div><div class="list-main"><a th:href="@{/jobs/{id}(id=${saved.job.id})}" th:text="${saved.job.title}">Job title</a><small><span th:text="${saved.job.recruiter.companyName}">Company</span> Â· <span th:text="${saved.job.location}">Location</span></small></div></div><div class="list-actions"><span class="deadline" th:text="|Apply by ${saved.job.deadline}|">Deadline</span><form th:action="@{/seeker/saved-jobs/{id}/delete(id=${saved.id})}" method="post"><input th:replace="~{fragments/ui :: csrf}"><button class="button button--ghost" type="submit">Remove</button></form></div></div></div></section><div th:if="${savedJobs.empty}" th:replace="~{fragments/ui :: empty('â™¡', 'Your shortlist is empty', 'Save the roles that spark something while you browse.', '/jobs', 'Find jobs')}"></div></div></main></body>
+</html>

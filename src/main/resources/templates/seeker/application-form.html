@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Apply for a role')}"></head>
+<body class="app-shell">
+    <div th:replace="~{fragments/ui :: workspace-nav('seeker', 'jobs', 'Apply for a role')}"></div>
+    <main class="app-main">
+        <div class="app-content">
+<div class="form-page narrow"><p><a class="text-link" th:href="@{/jobs/{id}(id=${jobId})}">Back to job</a></p>
+<div class="page-heading"><div><span class="eyebrow">One thoughtful step</span><h1>Apply for this role</h1><p>Tell the team what makes this opportunity meaningful to you.</p></div></div>
+<form class="panel form-stack" th:action="@{/seeker/applications/job/{id}(id=${jobId})}" th:object="${applicationForm}" method="post">
+<input th:replace="~{fragments/ui :: csrf}">
+<div class="field"><label for="cover-letter">Cover letter</label><textarea id="cover-letter" th:field="*{coverLetter}" rows="10" maxlength="5000" data-character-count="true" placeholder="Share a little about your experience, motivation, and the value you could bring."></textarea><small class="field-error" th:errors="*{coverLetter}"></small><small class="form-help">A focused, specific note is more useful than a generic introduction.</small><small class="form-help character-counter" data-character-counter aria-live="polite"></small></div>
+<div class="form-actions form-actions--end"><a class="button button--secondary" th:href="@{/jobs/{id}(id=${jobId})}">Cancel</a><button class="button button--primary" type="submit">Submit application</button></div>
+</form></div></div></main></body>
+</html>

@@ -1,0 +1,16 @@
+/* App shell */
+.app-shell { min-height: 100vh; }
+.app-sidebar { position: fixed; z-index: 45; top: 0; bottom: 0; left: 0; display: flex; width: 268px; flex-direction: column; padding: 28px 18px 18px; background: var(--ink-950); color: #aeb7c9; }
+.brand--sidebar .brand-copy strong { color: white; }
+.brand--sidebar .brand-copy small { color: #7f8ca6; }
+.sidebar-head { display: flex; align-items: center; justify-content: space-between; padding: 0 10px 32px; }
+.sidebar-close { display: none; border-color: rgba(255,255,255,.1); background: transparent; color: white; }
+.sidebar-role { padding: 0 12px 12px; color: #71809a; font-size: .7rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.side-nav { display: grid; gap: 4px; }
+.side-nav a, .sidebar-foot a, .sidebar-foot button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px; border: 0; border-radius: 10px; background: transparent; color: #aeb7c9; text-align: left; font-size: .9rem; font-weight: 600; cursor: pointer; }
+.side-nav a:hover, .sidebar-foot a:hover, .sidebar-foot button:hover { background: rgba(255,255,255,.07); color: white; }
+.side-nav a.is-active { background: rgba(81,70,216,.27); color: white; box-shadow: inset 3px 0 0 #8179ff; }
+.nav-icon { display: inline-grid; width: 21px; place-items: center; color: #8996ae; font-size: 1.05rem; }
+.is-active .nav-icon { color: #aaa5ff; }
+.sidebar-foot { display: grid; gap: 4px; margin-top: auto; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08); }
+.sidebar-foot .inline-form button { font: inherit; }

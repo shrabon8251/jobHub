@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Something went wrong')}"></head>
+<body><div th:replace="~{fragments/ui :: public-nav}"></div><main class="section"><div class="container narrow"><div class="empty-state"><div class="empty-icon">×</div><span class="eyebrow">500 · Unexpected pause</span><h1>We hit a rough edge.</h1><p>Please try again in a moment. Your account and progress are safe.</p><div class="page-heading-actions"><a class="button button--primary" th:href="@{/}">Try again</a><a class="button button--secondary" th:href="@{/jobs}">Browse jobs</a></div></div></div></main></body>
+</html>

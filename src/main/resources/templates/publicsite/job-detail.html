@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/ui :: head('Job details')}"></head>
+<body>
+<div th:replace="~{fragments/ui :: public-nav}"></div>
+<main>
+    <section class="job-detail-hero">
+        <div class="container">
+            <a class="breadcrumb-light" th:href="@{/jobs}">← Back to opportunities</a>
+            <div class="job-detail-heading"><img class="detail-logo" th:src="${job.recruiter.companyPhoto != null ? '/media/' + job.recruiter.companyPhoto : '/images/brand/demo-logo.svg'}" th:alt="|${job.recruiter.companyName} logo|"><div><span class="eyebrow" th:text="${job.category.name}">Category</span><h1 th:text="${job.title}">Job title</h1><p class="company-name" th:text="${job.recruiter.companyName}">Company name</p></div></div>
+            <img class="job-banner job-banner--public" th:src="${job.photo != null ? '/media/' + job.photo : '/images/jobs/demo-job.svg'}" alt="Job banner">
+            <div class="detail-meta"><span>⌖ <span th:text="${job.location}">Location</span></span><span>◷ <span th:text="${#strings.replace(job.employmentType.toString(), '_', ' ')}">Employment type</span></span><span th:if="${job.salaryMin != null}">৳ <span th:text="${job.salaryMin}">0</span><span th:if="${job.salaryMax != null}" th:text="| – ${job.salaryMax}|"></span></span><span>Apply by <span th:text="${job.deadline}">date</span></span></div>
+        </div>
+    </section>
+    <div class="container detail-layout">
+        <article class="detail-copy">
+            <div class="detail-intro"><span class="badge badge--active">Actively hiring</span><span class="muted">Posted by a HIRVO recruiting partner</span></div>
+            <section><h2>About the role</h2><p th:text="${job.description}">Role description</p></section>
+            <section th:if="${job.responsibilities}"><h2>What you’ll do</h2><p th:text="${job.responsibilities}">Responsibilities</p></section>
+            <section th:if="${job.requirements}"><h2>What you bring</h2><p th:text="${job.requirements}">Requirements</p></section>
+            <section><h2>Role snapshot</h2><div class="tag-list"><span class="tag" th:text="${job.category.name}">Category</span><span class="tag" th:text="${#strings.replace(job.employmentType.toString(), '_', ' ')}">Full time</span><span class="tag" th:text="${job.location}">Location</span></div></section>
+        </article>
+        <aside class="sticky-card">
+            <div class="action-card action-card--premium"><span class="eyebrow">Your next move</span><h3>Ready to make an impact?</h3><p th:text="|Applications are open until ${job.deadline}.|">Applications are open.</p><a sec:authorize="hasRole('JOB_SEEKER')" class="button button--primary" th:href="@{/seeker/applications/job/{id}/apply(id=${job.id})}">Apply now <span aria-hidden="true">→</span></a><form sec:authorize="hasRole('JOB_SEEKER')" th:action="@{/seeker/saved-jobs/{id}(id=${job.id})}" method="post"><input th:replace="~{fragments/ui :: csrf}"><button class="button button--secondary" type="submit">♡ Save job</button></form><a sec:authorize="isAnonymous()" class="button button--primary" th:href="@{/login}">Sign in to apply</a><a sec:authorize="isAnonymous()" class="button button--secondary" th:href="@{/register}">Create an account</a><p class="muted">Your application is handled securely by HIRVO.</p></div>
+            <div class="company-panel company-panel--detail"><img class="company-logo" th:src="${job.recruiter.companyPhoto != null ? '/media/' + job.recruiter.companyPhoto : '/images/brand/demo-logo.svg'}" alt=""><div><h3 th:text="${job.recruiter.companyName}">Company</h3><p>A HIRVO recruiting partner building what comes next.</p></div></div>
+        </aside>
+    </div>
+</main>
+</body>
+</html>

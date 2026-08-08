@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Edit company profile')}"></head>
+<body class="app-shell">
+    <div th:replace="~{fragments/ui :: workspace-nav('recruiter', 'profile', 'Edit company profile')}"></div>
+    <main class="app-main">
+        <div class="app-content">
+    <div class="form-page narrow"><p><a class="text-link" th:href="@{/recruiter/profile}">Back to company profile</a></p>
+        <div class="page-heading"><div><span class="eyebrow">Show the work behind the role</span><h1>Edit company profile</h1><p>A clear company story helps the right candidates understand your context.</p></div></div>
+        <form class="panel form-stack" th:action="@{/recruiter/profile/edit}" th:object="${recruiterProfileForm}" method="post" enctype="multipart/form-data">
+            <input th:replace="~{fragments/ui :: csrf}">
+            <div class="error-summary" th:if="${#fields.hasGlobalErrors()}"><p th:each="error : ${#fields.globalErrors()}" th:text="${error}">Please review the form.</p></div>
+            <div class="form-section-title"><h2>Brand presence</h2><p class="muted">A recognizable visual identity helps candidates remember your team.</p></div>
+            <div class="form-grid"><div class="field file-drop"><label for="company-logo">Company logo</label><input id="company-logo" th:field="*{companyLogo}" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><small>Square JPG, PNG, WEBP, or GIF Â· max 5 MB</small><small class="field-error" th:errors="*{companyLogo}"></small></div><div class="field file-drop"><label for="company-cover">Company cover image</label><input id="company-cover" th:field="*{companyCover}" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><small>Wide image recommended Â· max 5 MB</small><small class="field-error" th:errors="*{companyCover}"></small></div></div>
+            <div class="field"><label for="company-name">Company name</label><input id="company-name" th:field="*{companyName}"><small class="field-error" th:errors="*{companyName}"></small></div><div class="field"><label for="company-description">Company description</label><textarea id="company-description" th:field="*{companyDescription}" maxlength="4000" data-character-count="true" placeholder="What are you building, and why does it matter?"></textarea><small class="field-error" th:errors="*{companyDescription}"></small><small class="form-help character-counter" data-character-counter aria-live="polite"></small></div>
+            <div class="form-section-title"><h2>Contact &amp; location</h2></div><div class="form-grid"><div class="field"><label for="website">Website</label><input id="website" th:field="*{website}" type="url" placeholder="https://"><small class="field-error" th:errors="*{website}"></small></div><div class="field"><label for="phone">Phone</label><input id="phone" th:field="*{phone}" type="tel"><small class="field-error" th:errors="*{phone}"></small></div><div class="field field--wide"><label for="street">Street</label><input id="street" th:field="*{street}"><small class="field-error" th:errors="*{street}"></small></div><div class="field"><label for="city">City</label><input id="city" th:field="*{city}"><small class="field-error" th:errors="*{city}"></small></div><div class="field"><label for="country">Country</label><input id="country" th:field="*{country}"><small class="field-error" th:errors="*{country}"></small></div><div class="field"><label for="postal-code">Postal code</label><input id="postal-code" th:field="*{postalCode}"><small class="field-error" th:errors="*{postalCode}"></small></div></div>
+            <div class="form-actions form-actions--end"><a class="button button--secondary" th:href="@{/recruiter/profile}">Cancel</a><button class="button button--primary" type="submit">Save profile</button></div>
+        </form>
+    </div>
+</div></main>
+</body>
+</html>

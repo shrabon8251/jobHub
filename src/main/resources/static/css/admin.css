@@ -1,0 +1,11 @@
+/* Admin */
+.admin-kpi .metric-card:nth-child(1) { border-top: 3px solid var(--primary-600); }
+.admin-kpi .metric-card:nth-child(2) { border-top: 3px solid var(--teal-700); }
+.admin-kpi .metric-card:nth-child(3) { border-top: 3px solid var(--amber-700); }
+.admin-kpi .metric-card:nth-child(4) { border-top: 3px solid var(--rose-700); }
+.moderation-callout { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px; border-radius: var(--radius-md); background: var(--ink-900); color: white; }
+.moderation-callout h2 { margin-bottom: 4px; color: white; font-size: 1.2rem; }
+.moderation-callout p { margin-bottom: 0; color: #b8c0d4; }
+.admin-stat-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+.admin-stat-list .metric-card { box-shadow: none; }
+

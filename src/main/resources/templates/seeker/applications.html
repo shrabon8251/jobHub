@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Applications')}"></head>
+<body class="app-shell">
+    <div th:replace="~{fragments/ui :: workspace-nav('seeker', 'applications', 'Applications')}"></div>
+    <main class="app-main">
+        <div class="app-content"><div th:replace="~{fragments/ui :: flash}"></div><div class="page-heading"><div><span class="eyebrow">Your progress</span><h1>Applications</h1><p>Keep track of every opportunity you have chosen to pursue.</p></div><a class="button button--primary" th:href="@{/jobs}">Find another role</a></div><section class="panel" th:if="${!applications.empty}"><div class="data-list"><div class="data-list-item" th:each="entry : ${applications}"><div class="list-main"><a th:href="@{/seeker/applications/{id}(id=${entry.id})}" th:text="${entry.job.title}">Job title</a><small><span th:text="${entry.job.recruiter.companyName}">Company</span> Â· Applied <span th:text="${#temporals.format(entry.appliedAt, 'dd MMM yyyy')}">date</span></small></div><div class="list-actions"><span th:replace="~{fragments/ui :: status(${entry.status})}"></span><a class="button button--secondary button--small" th:href="@{/seeker/applications/{id}(id=${entry.id})}">View details</a></div></div></div></section><div th:if="${applications.empty}" th:replace="~{fragments/ui :: empty('â–¤', 'No applications yet', 'When a role feels right, apply and your progress will live here.', '/jobs', 'Explore jobs')}"></div></div></main></body>
+</html>

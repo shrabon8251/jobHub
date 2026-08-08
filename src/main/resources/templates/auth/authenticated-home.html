@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Welcome')}"></head>
+<body>
+<div th:replace="~{fragments/ui :: public-nav}"></div>
+<main class="section"><div class="container narrow"><div class="panel"><span class="eyebrow">Welcome to HIRVO</span><h1>Talent Meets Opportunity.</h1><p class="muted">You are signed in. Continue to your workspace or explore open opportunities.</p><div class="page-heading-actions"><a class="button button--primary" th:href="@{/jobs}">Explore jobs</a><a class="button button--secondary" th:href="@{/}">Back home</a></div></div></div></main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+@media (max-width: 1050px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 42px; }
+    .hero-art { min-height: 0; max-width: 680px; }
+    .category-grid, .company-strip { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 820px) {
+    .hero { padding: 72px 0 66px; }
+    .hero h1 { font-size: clamp(2.8rem, 11vw, 4.4rem); }
+    .search-panel form { grid-template-columns: 1fr; }
+    .feature-grid, .testimonial-grid { grid-template-columns: 1fr; }
+    .trust-row { grid-template-columns: repeat(3, 1fr); }
+    .cta-band { grid-template-columns: 1fr; padding: 30px 26px; }
+    .company-profile-body { align-items: flex-start; flex-direction: column; padding-inline: 20px; }
+}
+@media (max-width: 560px) {
+    .hero { padding: 58px 0 54px; }
+    .hero-art img { border-radius: 22px; }
+    .category-grid, .company-strip, .trust-row { grid-template-columns: 1fr 1fr; }
+    .trust-stat strong { font-size: 1.5rem; }
+    .job-card { padding: 19px; }
+    .cta-band .button { width: 100%; }
+    .footer-bottom { align-items: flex-start; flex-direction: column; margin-top: 32px; }
+    .cover-banner { min-height: 140px; }
+    .company-profile-logo { width: 70px; height: 70px; }
+    .profile-summary-grid { grid-template-columns: 1fr 1fr; }
+    .profile-completion-card { grid-column: 1 / -1; align-items: flex-start; flex-direction: column; }
+    .media-upload-row { grid-template-columns: 1fr; }
+    .insight-panel { align-items: flex-start; flex-wrap: wrap; }
+    .insight-panel > .text-link { margin-left: 64px; }
+}

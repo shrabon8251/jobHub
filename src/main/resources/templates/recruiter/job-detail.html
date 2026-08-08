@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Manage job')}"></head>
+<body class="app-shell">
+    <div th:replace="~{fragments/ui :: workspace-nav('recruiter', 'jobs', 'Manage job')}"></div>
+    <main class="app-main">
+        <div class="app-content">
+    <div th:replace="~{fragments/ui :: flash}"></div>
+    <p><a class="text-link" th:href="@{/recruiter/jobs}">â† Back to jobs</a></p>
+    <div class="page-heading"><div><span class="eyebrow">Job management</span><h1 th:text="${job.title}">Job title</h1><p th:text="|${job.location} Â· ${job.employmentType} Â· Apply by ${job.deadline}|">Job metadata</p></div><span th:replace="~{fragments/ui :: status(${job.status})}"></span></div>
+    <div class="dashboard-grid">
+        <article class="panel">
+            <img class="job-banner" th:src="${job.photo != null ? '/media/' + job.photo : '/images/jobs/demo-job.svg'}" alt="Job banner">
+            <div class="panel-head"><h2>Role overview</h2><a class="button button--secondary button--small" th:href="@{/recruiter/jobs/{id}/edit(id=${job.id})}">Edit role</a></div>
+            <form th:if="${job.photo != null}" th:action="@{/recruiter/jobs/{id}/image/delete(id=${job.id})}" method="post"><input th:replace="~{fragments/ui :: csrf}"><button class="button button--ghost" data-confirm="Remove this job image?" type="submit">Remove image</button></form>
+            <h3>Description</h3><p th:text="${job.description}">Description</p>
+            <h3 th:if="${job.requirements}">Requirements</h3><p th:if="${job.requirements}" th:text="${job.requirements}">Requirements</p>
+            <h3 th:if="${job.responsibilities}">Responsibilities</h3><p th:if="${job.responsibilities}" th:text="${job.responsibilities}">Responsibilities</p>
+        </article>
+        <aside><section class="action-card"><h3>Manage visibility</h3><p>Keep the role aligned with your hiring moment.</p><form th:if="${job.status.name() == 'ACTIVE'}" th:action="@{/recruiter/jobs/{id}/pause(id=${job.id})}" method="post"><input th:replace="~{fragments/ui :: csrf}"><button class="button button--secondary" type="submit">Pause job</button></form><form th:if="${job.status.name() == 'PAUSED'}" th:action="@{/recruiter/jobs/{id}/resume(id=${job.id})}" method="post"><input th:replace="~{fragments/ui :: csrf}"><button class="button button--primary" type="submit">Resume job</button></form><form th:if="${job.status.name() != 'CLOSED' and job.status.name() != 'REMOVED'}" th:action="@{/recruiter/jobs/{id}/close(id=${job.id})}" method="post"><input th:replace="~{fragments/ui :: csrf}"><button class="button button--secondary" data-confirm="Close this job? It will no longer accept applications." type="submit">Close job</button></form><form th:action="@{/recruiter/jobs/{id}/delete(id=${job.id})}" method="post"><input th:replace="~{fragments/ui :: csrf}"><button class="button button--ghost" data-confirm="Delete this job? This action cannot be undone." type="submit">Delete job</button></form></section><section class="company-panel"><h3>Need candidate context?</h3><p>Review applicants and keep every conversation moving.</p><a class="text-link" th:href="@{/recruiter/applications}">View applicants â†’</a></section></aside>
+    </div>
+</div></main>
+</body>
+</html>

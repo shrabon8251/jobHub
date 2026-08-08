@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Applicants')}"></head>
+<body class="app-shell">
+    <div th:replace="~{fragments/ui :: workspace-nav('recruiter', 'applicants', 'Applicants')}"></div>
+    <main class="app-main">
+        <div class="app-content"><div th:replace="~{fragments/ui :: flash}"></div><div class="page-heading"><div><span class="eyebrow">Candidate pipeline</span><h1>Applicants</h1><p>Review the people who are leaning into your opportunities.</p></div></div><div class="progress-track"><div class="progress-step is-done">Applied</div><div class="progress-step">Reviewing</div><div class="progress-step">Shortlisted</div><div class="progress-step">Interview</div><div class="progress-step">Selected</div></div><section class="panel" th:if="${!applications.empty}"><div class="data-list"><div class="data-list-item" th:each="entry : ${applications}"><div class="list-main"><a th:href="@{/recruiter/applications/{id}(id=${entry.id})}" th:text="${entry.jobSeeker.fullName}">Candidate</a><small><span th:text="${entry.job.title}">Job</span> Â· Applied <span th:text="${#temporals.format(entry.appliedAt, 'dd MMM yyyy')}">date</span></small></div><div class="list-actions"><span th:replace="~{fragments/ui :: status(${entry.status})}"></span><a class="button button--secondary button--small" th:href="@{/recruiter/applications/{id}(id=${entry.id})}">Review</a></div></div></div></section><div th:if="${applications.empty}" th:replace="~{fragments/ui :: empty('â—Ž', 'No applicants yet', 'Once candidates apply, their stories and next steps will appear here.', '/recruiter/jobs/new', 'Create a job')}"></div></div></main></body>
+</html>

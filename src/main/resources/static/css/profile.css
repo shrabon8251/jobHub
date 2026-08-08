@@ -1,0 +1,27 @@
+/* Profile, timeline, empty states */
+.profile-header { display: flex; align-items: center; gap: 18px; padding: 26px; margin-bottom: 20px; }
+.profile-avatar { display: grid; flex: 0 0 72px; width: 72px; height: 72px; place-items: center; border-radius: 20px; background: var(--primary-100); color: var(--primary-700); font-family: "Plus Jakarta Sans", sans-serif; font-size: 1.7rem; font-weight: 800; }
+.profile-header h1 { margin: 0 0 4px; font-size: 1.8rem; }
+.profile-header p { margin: 0; color: var(--ink-500); }
+.profile-header .page-heading-actions { margin-left: auto; }
+.profile-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.profile-sections .panel:first-child { grid-column: 1 / -1; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { display: inline-flex; align-items: center; gap: 7px; padding: 7px 10px; border-radius: 8px; background: var(--primary-100); color: var(--primary-700); font-size: .82rem; font-weight: 700; }
+.tag form { display: inline; }
+.tag button { border: 0; background: transparent; color: inherit; cursor: pointer; }
+.timeline { position: relative; display: grid; gap: 16px; padding-left: 25px; }
+.timeline::before { position: absolute; top: 6px; bottom: 6px; left: 5px; width: 2px; background: var(--border); content: ""; }
+.timeline-card { position: relative; padding: 17px 18px; }
+.timeline-card::before { position: absolute; top: 20px; left: -27px; width: 11px; height: 11px; border: 3px solid var(--canvas); border-radius: 50%; background: var(--primary-600); content: ""; }
+.timeline-card h3 { margin-bottom: 4px; }
+.timeline-card p { margin-bottom: 0; color: var(--ink-500); font-size: .88rem; }
+.empty-state { display: grid; min-height: 280px; place-items: center; align-content: center; padding: 32px 20px; border: 1px dashed var(--border-strong); border-radius: var(--radius-md); background: rgba(255,255,255,.55); text-align: center; }
+.empty-icon { display: grid; width: 52px; height: 52px; place-items: center; margin-bottom: 14px; border-radius: 16px; background: var(--primary-100); color: var(--primary-600); font-size: 1.5rem; }
+.empty-state h2 { margin-bottom: 7px; font-size: 1.25rem; }
+.empty-state p { max-width: 380px; margin-bottom: 20px; color: var(--ink-500); }
+.interview-card { display: flex; align-items: center; gap: 16px; padding: 18px; border: 1px solid #b9e8df; border-radius: var(--radius-md); background: var(--teal-100); }
+.date-tile { display: grid; min-width: 55px; padding: 7px; place-items: center; border-radius: 10px; background: white; color: var(--teal-700); font-weight: 800; text-align: center; }
+.date-tile strong { font-size: 1.25rem; line-height: 1; }
+.date-tile small { font-size: .68rem; text-transform: uppercase; }
+

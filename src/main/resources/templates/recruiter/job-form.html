@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/ui :: head('Create a job')}"></head>
+<body class="app-shell">
+    <div th:replace="~{fragments/ui :: workspace-nav('recruiter', 'create', 'Create a job')}"></div>
+    <main class="app-main">
+    <div class="app-content">
+        <div class="form-page">
+            <p><a class="text-link" th:href="@{/recruiter/jobs}">Back to jobs</a></p>
+            <div class="page-heading"><div><span class="eyebrow">A thoughtful opportunity starts here</span><h1 th:text="${jobId == null ? 'Create a job' : 'Edit job'}">Create a job</h1><p>Give great candidates the context they need to picture themselves here.</p></div></div>
+            <form class="panel form-stack" th:action="${jobId == null} ? @{/recruiter/jobs} : @{/recruiter/jobs/{id}(id=${jobId})}" th:object="${jobForm}" method="post" enctype="multipart/form-data">
+                <input th:replace="~{fragments/ui :: csrf}">
+                <small class="field-error" th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></small>
+                <div class="form-section-title"><h2>Role basics</h2><p class="muted">The details candidates scan first.</p></div>
+                <div class="form-grid">
+                    <div class="field field--wide"><label for="title">Job title</label><input id="title" th:field="*{title}" placeholder="e.g. Product designer"><small class="field-error" th:errors="*{title}"></small></div>
+                    <div class="field"><label for="location">Location</label><input id="location" th:field="*{location}" placeholder="e.g. Dhaka or Remote"><small class="field-error" th:errors="*{location}"></small></div>
+                    <div class="field"><label for="employment-type">Employment type</label><select id="employment-type" th:field="*{employmentType}"><option value="">Choose a type</option><option th:each="type : ${employmentTypes}" th:value="${type}" th:text="${type}"></option></select><small class="field-error" th:errors="*{employmentType}"></small></div>
+                    <div class="field"><label for="category">Category</label><select id="category" th:field="*{categoryId}"><option value="">Choose a category</option><option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option></select><small class="field-error" th:errors="*{categoryId}"></small></div>
+                    <div class="field field--wide file-drop"><label for="job-image">Job image or banner</label><input id="job-image" th:field="*{jobImage}" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><small>JPG, PNG, WEBP, or GIF Â· max 5 MB</small><small class="field-error" th:errors="*{jobImage}"></small></div>
+                </div>
+                <div class="form-section-title"><h2>Tell the story</h2><p class="muted">Specificity helps the right people lean in.</p></div>
+                <div class="field"><label for="description">Description</label><textarea id="description" th:field="*{description}" rows="8" maxlength="10000" data-character-count="true" placeholder="What will this person own, learn, and change?"></textarea><small class="field-error" th:errors="*{description}"></small><small class="form-help character-counter" data-character-counter aria-live="polite"></small></div>
+                <div class="form-grid"><div class="field"><label for="requirements">Requirements</label><textarea id="requirements" th:field="*{requirements}" maxlength="10000" data-character-count="true" placeholder="What experience or capabilities matter?"></textarea><small class="field-error" th:errors="*{requirements}"></small><small class="form-help character-counter" data-character-counter aria-live="polite"></small></div><div class="field"><label for="responsibilities">Responsibilities</label><textarea id="responsibilities" th:field="*{responsibilities}" maxlength="10000" data-character-count="true" placeholder="What will their first months look like?"></textarea><small class="field-error" th:errors="*{responsibilities}"></small><small class="form-help character-counter" data-character-counter aria-live="polite"></small></div></div>
+                <div class="form-section-title"><h2>Compensation &amp; timing</h2></div>
+                <div class="form-grid"><div class="field"><label for="salary-min">Minimum salary</label><input id="salary-min" th:field="*{salaryMin}" type="number" step="0.01" min="0"><small class="field-error" th:errors="*{salaryMin}"></small></div><div class="field"><label for="salary-max">Maximum salary</label><input id="salary-max" th:field="*{salaryMax}" type="number" step="0.01" min="0"><small class="field-error" th:errors="*{salaryMax}"></small></div><div class="field"><label for="deadline">Application deadline</label><input id="deadline" th:field="*{deadline}" type="date"><small class="field-error" th:errors="*{deadline}"></small></div></div>
+                <div class="form-note"><strong>Ready to publish?</strong><span>Once the form passes validation, this role becomes active immediately.</span></div>
+                <div class="form-actions form-actions--end"><a class="button button--secondary" th:href="@{/recruiter/jobs}">Cancel</a><button class="button button--primary" type="submit" th:text="${jobId == null ? 'Publish job' : 'Save changes'}">Publish job</button></div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,16 @@
+/* Shared chrome */
+.site-header { position: sticky; top: 0; z-index: 30; border-bottom: 1px solid rgba(228,231,236,.85); background: rgba(255,255,255,.92); backdrop-filter: blur(18px); }
+.nav-inner { display: flex; align-items: center; min-height: 78px; gap: 28px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink-900); }
+.brand:hover { color: var(--ink-900); }
+.brand-mark { display: grid; width: 35px; height: 35px; place-items: center; border-radius: 11px; background: var(--ink-900); color: white; font-family: "Plus Jakarta Sans", sans-serif; font-weight: 800; box-shadow: 4px 4px 0 var(--primary-600); }
+.brand-copy { display: grid; line-height: 1.1; }
+.brand-copy strong { font-family: "Plus Jakarta Sans", sans-serif; font-size: 1rem; letter-spacing: .08em; }
+.brand-copy small { color: var(--ink-500); font-size: .61rem; margin-top: 4px; }
+.public-nav { display: flex; align-items: center; flex: 1; gap: 26px; }
+.public-nav > a:not(.button), .nav-signout { color: var(--ink-700); font-size: .92rem; font-weight: 600; }
+.public-nav > a:not(.button):hover, .nav-signout:hover { color: var(--primary-600); }
+.nav-spacer { flex: 1; }
+.nav-signout { border: 0; background: transparent; cursor: pointer; padding: 8px 0; }
+.nav-toggle { display: none !important; margin-left: auto; }
+.icon-button { display: inline-grid; width: 42px; height: 42px; place-items: center; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink-700); cursor: pointer; }

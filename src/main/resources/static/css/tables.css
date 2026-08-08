@@ -1,0 +1,27 @@
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-md); background: white; }
+.data-table { width: 100%; border-collapse: collapse; min-width: 720px; }
+.data-table th, .data-table td { padding: 15px 17px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: middle; }
+.data-table th { background: var(--surface-soft); color: var(--ink-500); font-size: .73rem; letter-spacing: .06em; text-transform: uppercase; }
+.data-table tbody tr:last-child td { border-bottom: 0; }
+.data-table tbody tr:hover { background: #fcfcff; }
+.data-table td strong, .data-table td a { color: var(--ink-900); font-weight: 700; }
+.action-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pagination { display: flex; justify-content: center; align-items: center; gap: 18px; margin-top: 24px; color: var(--ink-500); font-size: .88rem; }
+.pagination a { font-weight: 700; }
+.filter-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+.filter-chip { padding: 5px 9px; border-radius: 999px; background: var(--primary-100); color: var(--primary-700); font-size: .78rem; font-weight: 700; }
+.table-subtext { display: block; margin-top: 3px; color: var(--ink-500); font-size: .8rem; }
+.detail-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 0 0 28px; }
+.detail-list div { padding: 12px 0; border-bottom: 1px solid var(--border); }
+.detail-list dt { color: var(--ink-500); font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+.detail-list dd { margin: 3px 0 0; color: var(--ink-900); font-weight: 700; }
+.stack-gap { margin-top: 20px; }
+.form-page { width: min(920px, 100%); margin-inline: auto; }
+.profile-contact { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; color: var(--ink-500); font-size: .88rem; }
+.progress-ring { display: flex; align-items: center; gap: 13px; margin-bottom: 17px; }
+.progress-ring strong { display: grid; width: 55px; height: 55px; place-items: center; border: 7px solid var(--primary-100); border-right-color: var(--primary-600); border-radius: 50%; color: var(--primary-600); font-size: .9rem; }
+.progress-ring span { color: var(--ink-900); font-weight: 700; }
+.category-edit-form { display: flex; flex: 1; gap: 8px; align-items: center; }
+.category-edit-form .control-input { min-width: 0; }
+.drawer-open { overflow: hidden; }
+

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/ui :: head('Find your next opportunity')}"></head>
+<body>
+<div th:replace="~{fragments/ui :: public-nav}"></div>
+<main class="public-main">
+    <div th:replace="~{fragments/ui :: flash}"></div>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="hero-kicker">Talent Meets Opportunity.</span>
+                <h1>Find work that feels like <em>your next chapter.</em></h1>
+                <p class="hero-lede">HIRVO brings ambitious people and thoughtful teams together through a simpler, more human job search.</p>
+                <div class="hero-proof"><span>✦</span> Curated opportunities. Clearer decisions. More momentum.</div>
+            </div>
+            <div class="hero-art">
+                <img th:src="@{/images/hero/hero-illustration.svg}" alt="A HIRVO opportunity card illustration">
+                <div class="search-panel">
+                    <form th:action="@{/jobs}" method="get">
+                        <label class="search-field"><span aria-hidden="true">⌕</span><span class="sr-only">Keyword</span><input name="keyword" type="search" placeholder="Job title or keyword" th:value="${keyword}"></label>
+                        <label class="search-field"><span aria-hidden="true">⌖</span><span class="sr-only">Location</span><input name="location" type="search" placeholder="City or location" th:value="${location}"></label>
+                        <button class="button button--primary" type="submit">Search jobs <span aria-hidden="true">→</span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--compact trust-section">
+        <div class="container trust-row">
+            <div class="trust-stat"><strong th:text="${jobs.totalElements + '+'}">3+</strong><span>open roles to explore</span></div>
+            <div class="trust-stat"><strong th:text="${categories.size()}">4</strong><span>directions to grow in</span></div>
+            <div class="trust-stat"><strong>1</strong><span>calm place to keep moving</span></div>
+        </div>
+    </section>
+
+    <section class="section section--compact" id="featured">
+        <div class="container">
+            <div class="section-head">
+                <div><span class="eyebrow">Curated for momentum</span><h2>Latest opportunities</h2><p>Thoughtful roles from teams building what comes next.</p></div>
+                <a class="text-link" th:href="@{/jobs}">View all roles →</a>
+            </div>
+            <div class="job-grid" th:if="${!jobs.empty}">
+                <th:block th:each="job : ${jobs.content}"><div th:replace="~{fragments/ui :: job-card(${job})}"></div></th:block>
+            </div>
+            <div th:if="${jobs.empty}" th:replace="~{fragments/ui :: empty('✦', 'Your next opportunity is on its way', 'There are no active roles right now. Check back soon or widen your search.', null, null)}"></div>
+        </div>
+    </section>
+
+    <section class="section section--compact" id="categories">
+        <div class="container">
+            <div class="section-head"><div><span class="eyebrow">Find your direction</span><h2>Browse by category</h2><p>Start with the kind of work that makes you curious.</p></div></div>
+            <div class="category-grid">
+                <a class="category-tile" th:each="category : ${categories}" th:href="@{/jobs(categoryId=${category.id})}"><strong th:text="${category.name}">Engineering</strong><span>Explore roles →</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--tint">
+        <div class="container">
+            <div class="section-head"><div><span class="eyebrow">Teams worth knowing</span><h2>Companies with a point of view</h2><p>Meet the builders, operators, and dreamers shaping better work.</p></div></div>
+            <div class="company-strip">
+                <div class="company-chip"><img th:src="@{/images/brand/demo-logo.svg}" alt=""><span>HIRVO Demo Company</span></div>
+                <div class="company-chip"><img th:src="@{/images/brand/demo-logo.svg}" alt=""><span>Northstar Labs</span></div>
+                <div class="company-chip"><img th:src="@{/images/brand/demo-logo.svg}" alt=""><span>Brightline Studio</span></div>
+                <div class="company-chip"><img th:src="@{/images/brand/demo-logo.svg}" alt=""><span>Goodwork Collective</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-head"><div><span class="eyebrow">A better starting point</span><h2>Make the next move feel possible.</h2><p>HIRVO keeps the experience focused for both sides of the table.</p></div></div>
+            <div class="feature-grid">
+                <article class="feature-card"><div class="feature-card-icon">⌕</div><h3>Search with intent</h3><p>Clear role context, useful filters, and the details you need to decide with confidence.</p></article>
+                <article class="feature-card"><div class="feature-card-icon">♡</div><h3>Keep your momentum</h3><p>Save the roles that spark something and track every application in one calm workspace.</p></article>
+                <article class="feature-card"><div class="feature-card-icon">◇</div><h3>Meet thoughtful teams</h3><p>Discover companies that care about the work, the people, and what comes after the interview.</p></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--tint">
+        <div class="container">
+            <div class="section-head"><div><span class="eyebrow">Early HIRVO voices</span><h2>Good work starts with feeling seen.</h2></div></div>
+            <div class="testimonial-grid">
+                <article class="testimonial-card"><p>“The role details were honest and easy to scan. I knew what I was saying yes to before I applied.”</p><div class="testimonial-person"><img th:src="@{/images/avatars/demo-avatar.svg}" alt=""><div><strong>Maya, Product designer</strong><span>Candidate community</span></div></div></article>
+                <article class="testimonial-card"><p>“HIRVO gave our team a place to tell the story behind the job, not just list requirements.”</p><div class="testimonial-person"><img th:src="@{/images/avatars/demo-avatar.svg}" alt=""><div><strong>Rafi, Hiring lead</strong><span>HIRVO partner</span></div></div></article>
+                <article class="testimonial-card"><p>“It feels like a job board designed by people who remember that both sides are human.”</p><div class="testimonial-person"><img th:src="@{/images/avatars/demo-avatar.svg}" alt=""><div><strong>Samira, Growth lead</strong><span>Candidate community</span></div></div></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--compact">
+        <div class="container cta-band"><div><h2>Ready for a better next step?</h2><p>Build your profile, discover a role, and keep moving with HIRVO.</p></div><div class="page-heading-actions"><a class="button button--primary" th:href="@{/register}">Create your account →</a><a class="button button--secondary" th:href="@{/jobs}">Browse jobs</a></div></div>
+    </section>
+
+    <section class="section section--compact" id="results">
+        <div class="container">
+            <div class="section-head">
+                <div><span class="eyebrow">Search workspace</span><h2 th:text="${keyword != null or location != null ? 'Search results' : 'Explore every role'}">Explore every role</h2><p th:text="${jobs.totalElements > 0 ? jobs.totalElements + ' roles ready to explore' : 'New opportunities will appear here.'}">Roles ready to explore</p></div>
+                <button class="button button--secondary filter-toggle" type="button" data-filter-toggle aria-expanded="false">Filter results</button>
+            </div>
+            <div class="listing-layout">
+                <aside class="filter-panel" data-filter-panel aria-label="Job filters">
+                    <div class="panel-head"><div><span class="eyebrow">Refine</span><h3>Find your fit</h3></div><button class="icon-button filter-close" type="button" data-filter-close aria-label="Close filters">×</button></div>
+                    <form class="filter-stack" th:action="@{/jobs}" method="get">
+                        <div class="field"><label for="filter-keyword">Keyword</label><input id="filter-keyword" name="keyword" th:value="${keyword}" placeholder="e.g. Product designer"></div>
+                        <div class="field"><label for="filter-location">Location</label><input id="filter-location" name="location" th:value="${location}" placeholder="e.g. Dhaka"></div>
+                        <div class="field"><label for="filter-category">Category</label><select id="filter-category" name="categoryId"><option value="">All categories</option><option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}" th:selected="${category.id == categoryId}"></option></select></div>
+                        <div class="field"><label for="filter-type">Employment type</label><select id="filter-type" name="employmentType"><option value="">All types</option><option th:each="type : ${types}" th:value="${type}" th:text="${#strings.replace(type.toString(), '_', ' ')}" th:selected="${type == employmentType}"></option></select></div>
+                        <div class="form-grid"><div class="field"><label for="salary-min">Min salary</label><input id="salary-min" name="salaryMin" type="number" step="0.01" th:value="${salaryMin}" placeholder="Optional"></div><div class="field"><label for="salary-max">Max salary</label><input id="salary-max" name="salaryMax" type="number" step="0.01" th:value="${salaryMax}" placeholder="Optional"></div></div>
+                        <div class="filter-actions"><button class="button button--primary" type="submit">Apply filters</button><a class="button button--ghost" th:href="@{/jobs}">Clear</a></div>
+                    </form>
+                </aside>
+                <div>
+                    <div class="results-head"><p th:text="|Showing ${jobs.numberOfElements} of ${jobs.totalElements} roles|">Showing roles</p><form method="get" th:action="@{/jobs}"><input type="hidden" name="keyword" th:value="${keyword}"><input type="hidden" name="location" th:value="${location}"><input type="hidden" name="categoryId" th:value="${categoryId}"><input type="hidden" name="employmentType" th:value="${employmentType}"><input type="hidden" name="salaryMin" th:value="${salaryMin}"><input type="hidden" name="salaryMax" th:value="${salaryMax}"><label class="sr-only" for="sort">Sort results</label><select id="sort" name="sort" onchange="this.form.submit()"><option value="newest" th:selected="${sort == 'newest'}">Newest first</option><option value="deadline" th:selected="${sort == 'deadline'}">Closing soon</option><option value="salary" th:selected="${sort == 'salary'}">Highest salary</option></select></form></div>
+                    <div class="results-grid" th:if="${!jobs.empty}"><th:block th:each="job : ${jobs.content}"><div th:replace="~{fragments/ui :: job-card(${job})}"></div></th:block></div>
+                    <div th:if="${jobs.empty}" th:replace="~{fragments/ui :: empty('⌕', 'No roles match that search', 'Try a broader keyword, a different location, or clear some filters.', '/jobs', 'Clear filters')}"></div>
+                    <nav th:if="${jobs.totalPages > 1}" class="pagination" aria-label="Job pages"><a th:if="${jobs.hasPrevious()}" th:href="@{/jobs(page=${jobs.number - 1},keyword=${keyword},location=${location},categoryId=${categoryId},employmentType=${employmentType},salaryMin=${salaryMin},salaryMax=${salaryMax},sort=${sort})}">← Previous</a><span th:text="|Page ${jobs.number + 1} of ${jobs.totalPages}|">Page 1 of 1</span><a th:if="${jobs.hasNext()}" th:href="@{/jobs(page=${jobs.number + 1},keyword=${keyword},location=${location},categoryId=${categoryId},employmentType=${employmentType},salaryMin=${salaryMin},salaryMax=${salaryMax},sort=${sort})}">Next →</a></nav>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<div th:replace="~{fragments/ui :: public-footer}"></div>
+</body>
+</html>

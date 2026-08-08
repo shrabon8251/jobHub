@@ -1,0 +1,6 @@
+.flash-stack { position: fixed; z-index: 60; top: 90px; right: 24px; display: grid; width: min(440px, calc(100% - 32px)); gap: 10px; }
+.alert { display: flex; align-items: flex-start; gap: 10px; padding: 14px 15px; border: 1px solid; border-radius: var(--radius-sm); box-shadow: var(--shadow-md); background: var(--surface); font-size: .92rem; }
+.alert--success { border-color: #b9e8df; color: var(--teal-700); background: var(--teal-100); }
+.alert--error { border-color: #f3c5cf; color: var(--rose-700); background: var(--rose-100); }
+.alert-icon { display: grid; flex: 0 0 22px; height: 22px; place-items: center; border-radius: 50%; background: currentColor; color: white; font-size: .75rem; font-weight: 800; }
+.alert-close { margin-left: auto; border: 0; background: transparent; color: currentColor; cursor: pointer; font-size: 1.25rem; line-height: 1; }
